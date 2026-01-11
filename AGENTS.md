@@ -36,4 +36,4 @@
 
 ## Security & Configuration Tips
 - Store secrets in `.env.local` (git-ignored by default). Do not commit credentials.
-- Verify external data handling and sanitize user input in new routes or API handlers.
+- Verify external data handling and sanitize user input in new routes or API handlers. 
