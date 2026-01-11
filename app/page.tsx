@@ -27,13 +27,13 @@ export default function HomePage({ searchParams }: { searchParams: Promise<Recor
             </span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
-            <Link href={{ pathname: "/", query: { lang: locale } }} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            <Link href={`/?lang=${locale}#generator`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
               {t.navGenerator}
             </Link>
-            <Link href={{ pathname: "/", query: { lang: locale, section: "explainer" } }} className="text-sm text-muted-foreground hover:text-secondary transition-colors">
+            <Link href={`/?lang=${locale}#explainer`} className="text-sm text-muted-foreground hover:text-secondary transition-colors">
               {t.navExplainer}
             </Link>
-            <Link href={{ pathname: "/", query: { lang: locale, section: "examples" } }} className="text-sm text-muted-foreground hover:text-accent transition-colors">
+            <Link href={`/?lang=${locale}#examples`} className="text-sm text-muted-foreground hover:text-accent transition-colors">
               {t.navExamples}
             </Link>
           </nav>
