@@ -8,7 +8,7 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "AI Chinese Names Generator & Meaning Explainer | ChineseNames.ai",
+  title: "AI Chinese Names Generator & Meaning Explainer | NameMe.online",
   description:
     "Explore Chinese names and their meanings with the AI Chinese Names Generator. Discover name origins, significance, and translations to find unique names that match your preferences.",
   generator: "v0.app",

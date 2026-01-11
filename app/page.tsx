@@ -23,7 +23,7 @@ export default function HomePage({ searchParams }: { searchParams: Promise<Recor
               <Sparkles className="h-5 w-5 text-primary-foreground" />
             </div>
             <span className="text-xl font-semibold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              ChineseNames.ai
+              NameMe.online
             </span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
@@ -215,7 +215,7 @@ export default function HomePage({ searchParams }: { searchParams: Promise<Recor
       {/* Footer */}
       <footer className="border-t border-border mt-20 bg-card/50">
         <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
-          <p>© 2026 ChineseNames.ai - AI Chinese Names Generator & Meaning Explainer</p>
+          <p>© 2026 NameMe.online - AI Chinese Names Generator & Meaning Explainer</p>
         </div>
       </footer>
     </div>

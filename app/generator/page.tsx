@@ -22,7 +22,7 @@ export default function GeneratorPage({
             <span className="text-sm text-muted-foreground hover:text-primary transition-colors">{t.backHome}</span>
           </Link>
           <Link href={{ pathname: "/", query: { lang: locale } }} className="font-semibold">
-            ChineseNames.ai
+            NameMe.online
           </Link>
         </div>
       </header>
