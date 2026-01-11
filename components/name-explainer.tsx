@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { BookOpen, Info, Languages } from "lucide-react"
+import { BookOpen, Info, Languages, Loader2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -114,7 +114,7 @@ export function NameExplainer({ locale, onLocaleChange }: NameExplainerProps) {
           <CardDescription>{t.subtitle}</CardDescription>
         </CardHeader>
         <CardContent>
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form className="space-y-4" onSubmit={handleSubmit} aria-busy={isLoading}>
             <div className="space-y-2">
               <Label htmlFor="name">{t.name}</Label>
               <Input
@@ -137,17 +137,40 @@ export function NameExplainer({ locale, onLocaleChange }: NameExplainerProps) {
             </div>
 
             {error ? (
-              <p className="text-sm text-destructive">{error}</p>
+              <p className="text-sm text-destructive" aria-live="polite">
+                {error}
+              </p>
             ) : (
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Info className="h-4 w-4" />
-                <span>{t.info}</span>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Info className="h-4 w-4" />
+                  <span>{t.info}</span>
+                </div>
+                {isLoading && (
+                  <div
+                    className="flex items-start gap-3 rounded-lg border border-secondary/30 bg-secondary/5 px-3 py-2 text-sm"
+                    aria-live="polite"
+                  >
+                    <Loader2 className="mt-0.5 h-4 w-4 text-secondary animate-spin" />
+                    <div className="space-y-0.5">
+                      <p className="font-medium text-foreground">{t.loading}</p>
+                      <p className="text-xs text-muted-foreground">{t.loadingHint}</p>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
             <div className="flex gap-3">
               <Button type="submit" className="flex-1" disabled={isLoading}>
-                {isLoading ? `${t.submit}...` : t.submit}
+                {isLoading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    {t.loadingCta}
+                  </>
+                ) : (
+                  t.submit
+                )}
               </Button>
               <Button
                 type="button"
@@ -165,6 +188,8 @@ export function NameExplainer({ locale, onLocaleChange }: NameExplainerProps) {
           </form>
         </CardContent>
       </Card>
+
+      {isLoading && !explanation && <LoadingPlaceholder />}
 
       {explanation && (
         <Card className="border-secondary/30">
@@ -198,6 +223,20 @@ function InfoRow({ label, value }: { label: string; value: string }) {
     <div className="space-y-1 rounded-lg border border-border/60 bg-card/50 p-3">
       <div className="text-sm font-semibold">{label}</div>
       <p className="text-sm text-muted-foreground leading-relaxed">{value}</p>
+    </div>
+  )
+}
+
+function LoadingPlaceholder() {
+  return (
+    <div className="grid gap-3 md:grid-cols-2" aria-live="polite">
+      {[1, 2].map((item) => (
+        <div key={item} className="animate-pulse rounded-lg border border-border/60 bg-card/50 p-4 space-y-3">
+          <div className="h-4 w-24 rounded bg-muted" />
+          <div className="h-3 w-full rounded bg-muted" />
+          <div className="h-3 w-3/4 rounded bg-muted" />
+        </div>
+      ))}
     </div>
   )
 }
