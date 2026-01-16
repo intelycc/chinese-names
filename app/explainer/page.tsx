@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 
 import { explainerCopy, type Locale } from "@/lib/copy"
+import { AuthButtons } from "@/components/auth-buttons"
 import { NameExplainer } from "@/components/name-explainer"
 
 export default function ExplainerPage({
@@ -17,13 +18,16 @@ export default function ExplainerPage({
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href={{ pathname: "/", query: { lang: locale } }}>
-            <span className="text-sm text-muted-foreground hover:text-primary transition-colors">{t.backHome}</span>
-          </Link>
-          <Link href={{ pathname: "/", query: { lang: locale } }} className="font-semibold">
-            NameMe.online
-          </Link>
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <Link href={{ pathname: "/", query: { lang: locale } }}>
+              <span className="text-sm text-muted-foreground hover:text-primary transition-colors">{t.backHome}</span>
+            </Link>
+            <Link href={{ pathname: "/", query: { lang: locale } }} className="font-semibold">
+              NameMe.online
+            </Link>
+          </div>
+          <AuthButtons locale={locale} />
         </div>
       </header>
 

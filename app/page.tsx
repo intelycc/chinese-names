@@ -2,6 +2,7 @@ import Link from "next/link"
 import React from "react"
 import type { Locale } from "@/lib/copy"
 import { homeCopy } from "@/lib/copy"
+import { AuthButtons } from "@/components/auth-buttons"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -37,7 +38,10 @@ export default function HomePage({ searchParams }: { searchParams: Promise<Recor
               {t.navExamples}
             </Link>
           </nav>
-          <LocaleSwitch locale={locale} />
+          <div className="flex items-center gap-3">
+            <AuthButtons locale={locale} />
+            <LocaleSwitch locale={locale} />
+          </div>
         </div>
       </header>
 
